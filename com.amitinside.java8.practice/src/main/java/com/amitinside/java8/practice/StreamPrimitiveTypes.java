@@ -15,18 +15,19 @@
  *******************************************************************************/
 package com.amitinside.java8.practice;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.IntSummaryStatistics;
 
-public final class Question6Ch3 {
+import com.amitinside.java8.practice.model.Album;
 
-	public static int countLowercaseLetters(final String string) {
-		return (int) string.chars().filter(character -> Character.isLowerCase(character)).count();
-	}
+public final class StreamPrimitiveTypes {
 
-	public static Optional<String> mostLowercaseString(final List<String> strings) {
-		return strings.stream().max(Comparator.comparing(Question6Ch3::countLowercaseLetters));
+	public static void printTrackLengthStatistics(final Album album) {
+		final IntSummaryStatistics trackLengthStats = album.getTracks().mapToInt(track -> track.getLength())
+				.summaryStatistics();
+		System.out.println("Max: " + trackLengthStats.getMax());
+		System.out.println("Min: " + trackLengthStats.getMin());
+		System.out.println("Avg: " + trackLengthStats.getAverage());
+		System.out.println("Total Length: " + trackLengthStats.getSum());
 	}
 
 }
