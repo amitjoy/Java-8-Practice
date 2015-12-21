@@ -17,12 +17,55 @@ package com.amitinside.java8.practice;
 
 public final class StringCombiner {
 
-	public StringCombiner add(final String element) {
-		return null;
+	private final StringBuilder builder;
+	private final String delim;
+	private final String prefix;
+	private final String suffix;
+
+	public StringCombiner(final String delim, final String prefix, final String suffix) {
+		this.delim = delim;
+		this.prefix = prefix;
+		this.suffix = suffix;
+		this.builder = new StringBuilder();
 	}
 
+	// BEGIN add
+	public StringCombiner add(final String element) {
+		if (this.areAtStart()) {
+			this.builder.append(this.prefix);
+		} else {
+			this.builder.append(this.delim);
+		}
+		this.builder.append(element);
+		return this;
+	}
+	// END add
+
+	private boolean areAtStart() {
+		return this.builder.length() == 0;
+	}
+
+	// BEGIN merge
 	public StringCombiner merge(final StringCombiner other) {
-		return null;
+		if (other.builder.length() > 0) {
+			if (this.areAtStart()) {
+				this.builder.append(this.prefix);
+			} else {
+				this.builder.append(this.delim);
+			}
+			this.builder.append(other.builder, this.prefix.length(), other.builder.length());
+		}
+		return this;
+	}
+	// END merge
+
+	@Override
+	public String toString() {
+		if (this.areAtStart()) {
+			this.builder.append(this.prefix);
+		}
+		this.builder.append(this.suffix);
+		return this.builder.toString();
 	}
 
 }

@@ -38,4 +38,8 @@ public final class PrettyPrintExamples {
 		System.out.println(reduced.toString());
 	}
 
+	public String prettyPrintArtistsNames2(final List<Artist> artists) {
+		return artists.stream().map(Artist::getName).collect(new StringCollector(", ", "[", "]"));
+	}
+
 }
