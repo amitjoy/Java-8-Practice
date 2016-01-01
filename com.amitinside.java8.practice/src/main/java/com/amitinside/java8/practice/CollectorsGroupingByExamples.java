@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 import com.amitinside.java8.practice.model.Student;
 
-public class CollectorsGroupingBy {
+public final class CollectorsGroupingByExamples {
 
 	public static void main(final String[] args) {
 		final Student s1 = new Student("Ram", "A", 20);
