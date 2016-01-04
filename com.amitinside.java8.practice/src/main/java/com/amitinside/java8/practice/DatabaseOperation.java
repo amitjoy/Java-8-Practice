@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2015 Amit Kumar Mondal
+ * Copyright 2016 Amit Kumar Mondal
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,15 +15,13 @@
  *******************************************************************************/
 package com.amitinside.java8.practice;
 
-import java.text.SimpleDateFormat;
-
 import com.amitinside.java8.practice.model.Album;
 
-public final class ThreadLocalLambda {
+public final class DatabaseOperation {
 
-	private final ThreadLocal<Album> currentAlbum = ThreadLocal
-			.withInitial(() -> DatabaseOperation.lookUpcurrentAlbum());
-
-	private final ThreadLocal<SimpleDateFormat> threadLocal = ThreadLocal.withInitial(() -> new SimpleDateFormat());
+	public static Album lookUpcurrentAlbum() {
+		// Dummy method
+		return null;
+	}
 
 }
