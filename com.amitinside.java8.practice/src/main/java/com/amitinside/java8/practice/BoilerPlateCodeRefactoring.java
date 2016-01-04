@@ -25,6 +25,22 @@ public final class BoilerPlateCodeRefactoring {
 
 	private final List<Album> albums = Lists.newArrayList();
 
+	public long countMusicians_1() {
+		long count = 0;
+		for (final Album album : this.albums) {
+			count += album.getMusicianList().size();
+		}
+		return count;
+	}
+
+	public long countMusicians_2() {
+		return this.albums.stream().mapToLong(album -> album.getMusicianList().stream().count()).sum();
+	}
+
+	public long countMusicians_3() {
+		return this.albums.stream().flatMap(album -> album.getAllMusicians()).count();
+	}
+
 	// Boilerplate
 	public long countRunningTime_1() {
 		long count = 0;
