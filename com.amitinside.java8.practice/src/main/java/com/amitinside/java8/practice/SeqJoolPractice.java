@@ -23,7 +23,9 @@ public final class SeqJoolPractice {
 
 	public static void main(final String[] args) {
 		final List<String> alphabet = Seq.rangeClosed('A', 'Z').map(Object::toString).toList();
+		final String[] strings = Seq.rangeClosed('a', 'z').map(Object::toString).toArray(String[]::new);
 		System.out.println(alphabet);
+		System.out.println(strings);
 	}
 
 }
