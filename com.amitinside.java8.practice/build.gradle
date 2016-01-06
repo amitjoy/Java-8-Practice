@@ -8,4 +8,5 @@ dependencies {
     compile 'com.google.guava:guava:19.0'
     compile files('lib/jool-0.9.9-SNAPSHOT.jar')
     compile 'org.slf4j:log4j-over-slf4j:1.7.13'
+    testCompile 'junit:junit:4.12'
 }
