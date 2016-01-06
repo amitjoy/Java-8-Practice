@@ -23,6 +23,7 @@ import static org.jooq.lambda.Agg.median;
 import static org.jooq.lambda.Agg.min;
 import static org.jooq.lambda.Agg.minBy;
 import static org.jooq.lambda.Agg.noneBy;
+import static org.jooq.lambda.Agg.percentile;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
@@ -56,6 +57,62 @@ public final class SeqJoolPractice {
 		assertEquals(Optional.of(3), Stream.of(1, 2, 3, 4, 10, 9, 3, 3, 20).collect(median()));
 		assertEquals(Optional.of(3), Stream.of(1, 2, 3, 4, 10, 9, 3, 3, 20, 21).collect(median()));
 		assertEquals(Optional.of(4), Stream.of(1, 2, 3, 4, 10, 9, 3, 3, 20, 21, 22).collect(median()));
+
+		// Min
+		assertEquals(Optional.empty(), Stream.<Integer> of().collect(percentile(0.0)));
+		assertEquals(Optional.of(1), Stream.of(1).collect(percentile(0.0)));
+		assertEquals(Optional.of(1), Stream.of(1, 2).collect(percentile(0.0)));
+		assertEquals(Optional.of(1), Stream.of(1, 2, 3).collect(percentile(0.0)));
+		assertEquals(Optional.of(1), Stream.of(1, 2, 3, 4).collect(percentile(0.0)));
+		assertEquals(Optional.of(1), Stream.of(1, 2, 3, 4, 10).collect(percentile(0.0)));
+		assertEquals(Optional.of(1), Stream.of(1, 2, 3, 4, 10, 9).collect(percentile(0.0)));
+		assertEquals(Optional.of(1), Stream.of(1, 2, 3, 4, 10, 9, 3).collect(percentile(0.0)));
+		assertEquals(Optional.of(1), Stream.of(1, 2, 3, 4, 10, 9, 3, 3).collect(percentile(0.0)));
+		assertEquals(Optional.of(1), Stream.of(1, 2, 3, 4, 10, 9, 3, 3, 20).collect(percentile(0.0)));
+
+		// 0.25 percentile
+		assertEquals(Optional.empty(), Stream.<Integer> of().collect(percentile(0.25)));
+		assertEquals(Optional.of(1), Stream.of(1).collect(percentile(0.25)));
+		assertEquals(Optional.of(1), Stream.of(1, 2).collect(percentile(0.25)));
+		assertEquals(Optional.of(1), Stream.of(1, 2, 3).collect(percentile(0.25)));
+		assertEquals(Optional.of(1), Stream.of(1, 2, 3, 4).collect(percentile(0.25)));
+		assertEquals(Optional.of(2), Stream.of(1, 2, 3, 4, 10).collect(percentile(0.25)));
+		assertEquals(Optional.of(2), Stream.of(1, 2, 3, 4, 10, 9).collect(percentile(0.25)));
+		assertEquals(Optional.of(2), Stream.of(1, 2, 3, 4, 10, 9, 3).collect(percentile(0.25)));
+
+		// Median
+		assertEquals(Optional.empty(), Stream.<Integer> of().collect(percentile(0.5)));
+		assertEquals(Optional.of(1), Stream.of(1).collect(percentile(0.5)));
+		assertEquals(Optional.of(1), Stream.of(1, 2).collect(percentile(0.5)));
+		assertEquals(Optional.of(2), Stream.of(1, 2, 3).collect(percentile(0.5)));
+		assertEquals(Optional.of(2), Stream.of(1, 2, 3, 4).collect(percentile(0.5)));
+		assertEquals(Optional.of(3), Stream.of(1, 2, 3, 4, 10).collect(percentile(0.5)));
+		assertEquals(Optional.of(3), Stream.of(1, 2, 3, 4, 10, 9).collect(percentile(0.5)));
+		assertEquals(Optional.of(3), Stream.of(1, 2, 3, 4, 10, 9, 3).collect(percentile(0.5)));
+		assertEquals(Optional.of(3), Stream.of(1, 2, 3, 4, 10, 9, 3, 3).collect(percentile(0.5)));
+
+		// 0.75 percentile
+		assertEquals(Optional.empty(), Stream.<Integer> of().collect(percentile(0.75)));
+		assertEquals(Optional.of(1), Stream.of(1).collect(percentile(0.75)));
+		assertEquals(Optional.of(2), Stream.of(1, 2).collect(percentile(0.75)));
+		assertEquals(Optional.of(3), Stream.of(1, 2, 3).collect(percentile(0.75)));
+		assertEquals(Optional.of(3), Stream.of(1, 2, 3, 4).collect(percentile(0.75)));
+		assertEquals(Optional.of(4), Stream.of(1, 2, 3, 4, 10).collect(percentile(0.75)));
+		assertEquals(Optional.of(9), Stream.of(1, 2, 3, 4, 10, 9).collect(percentile(0.75)));
+		assertEquals(Optional.of(9), Stream.of(1, 2, 3, 4, 10, 9, 3).collect(percentile(0.75)));
+		assertEquals(Optional.of(4), Stream.of(1, 2, 3, 4, 10, 9, 3, 3).collect(percentile(0.75)));
+
+		// Max
+		assertEquals(Optional.empty(), Stream.<Integer> of().collect(percentile(1.0)));
+		assertEquals(Optional.of(1), Stream.of(1).collect(percentile(1.0)));
+		assertEquals(Optional.of(2), Stream.of(1, 2).collect(percentile(1.0)));
+		assertEquals(Optional.of(3), Stream.of(1, 2, 3).collect(percentile(1.0)));
+		assertEquals(Optional.of(4), Stream.of(1, 2, 3, 4).collect(percentile(1.0)));
+		assertEquals(Optional.of(10), Stream.of(1, 2, 3, 4, 10).collect(percentile(1.0)));
+		assertEquals(Optional.of(10), Stream.of(1, 2, 3, 4, 10, 9).collect(percentile(1.0)));
+		assertEquals(Optional.of(10), Stream.of(1, 2, 3, 4, 10, 9, 3).collect(percentile(1.0)));
+		assertEquals(Optional.of(10), Stream.of(1, 2, 3, 4, 10, 9, 3, 3).collect(percentile(1.0)));
+		assertEquals(Optional.of(20), Stream.of(1, 2, 3, 4, 10, 9, 3, 3, 20).collect(percentile(1.0)));
 
 		System.out.println(Stream.of(1, 2, 3, 4).collect(allBy(num -> (num % 2) == 0)));
 		System.out.println(alphabet);
