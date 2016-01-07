@@ -16,8 +16,10 @@
 package com.amitinside.java8.practice;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.amitinside.java8.practice.model.Student;
@@ -42,7 +44,10 @@ public final class CollectorsGroupingByExamples {
 		// Group Student on the basis of age
 		System.out.println("----Group Student on the basis of age----");
 		final Map<Integer, List<Student>> stdByAge = list.stream().collect(Collectors.groupingBy(Student::getAge));
+		final Map<Integer, Set<Student>> stdByAge2 = list.stream()
+				.collect(Collectors.groupingBy(Student::getAge, Collectors.toCollection(HashSet::new)));
 
+		stdByAge2.forEach((k, v) -> System.out.println(v));
 		stdByAge.forEach((k, v) -> System.out
 				.println("Key:" + k + "  " + v.stream().map(m -> m.getName()).collect(Collectors.joining(","))));
 	}
