@@ -13,24 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.amitinside.java8.practice;
+package com.amitinside.java8.design.pattern.template.lambda;
 
-import java.util.Map;
+import com.amitinside.java8.design.pattern.template.ApplicationDenied;
 
-import com.google.common.collect.Maps;
+public class LoanApplication {
 
-public class Fibonacci {
+	private final Criteria creditHistory;
+	private final Criteria identity;
+	private final Criteria incomeHistory;
 
-	private final Map<Integer, Long> cache;
+	public LoanApplication(final Criteria identity, final Criteria creditHistory, final Criteria incomeHistory) {
 
-	public Fibonacci() {
-		this.cache = Maps.newHashMap();
-		this.cache.put(0, 0L);
-		this.cache.put(1, 1L);
+		this.identity = identity;
+		this.creditHistory = creditHistory;
+		this.incomeHistory = incomeHistory;
 	}
 
-	public long fibonacci(final int x) {
-		return this.cache.computeIfAbsent(x, n -> this.fibonacci(n - 1) + this.fibonacci(n - 2));
+	public void checkLoanApplication() throws ApplicationDenied {
+		this.identity.check();
+		this.creditHistory.check();
+		this.incomeHistory.check();
+		this.reportFindings();
+	}
+
+	private void reportFindings() {
 	}
 
 }

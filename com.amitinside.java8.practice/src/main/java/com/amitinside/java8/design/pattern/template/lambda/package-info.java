@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2015, 2016 Amit Kumar Mondal
+ * Copyright 2016 Amit Kumar Mondal
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,16 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.amitinside.java8.practice;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-import com.amitinside.java8.practice.model.Artist;
-
-public final class CollectToStringsExample {
-
-	public final String formatArtistNames(final List<Artist> artists) {
-		return artists.stream().map(Artist::getName).collect(Collectors.joining(", ", "[", "]"));
-	}
-}
+/**
+ * 
+ */
+/**
+ * @author AMIT KUMAR MONDAL
+ *
+ */
+package com.amitinside.java8.design.pattern.template.lambda;
