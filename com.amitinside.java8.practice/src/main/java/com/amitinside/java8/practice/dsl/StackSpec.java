@@ -19,7 +19,7 @@ import static com.amitinside.java8.practice.dsl.DescribeUtil.describe;
 
 import java.util.Stack;
 
-public final class Client {
+public final class StackSpec {
 
 	{
 		describe("a stack", it -> {
