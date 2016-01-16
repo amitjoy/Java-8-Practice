@@ -17,6 +17,8 @@ package com.amitinside.java8.practice;
 
 import java.util.stream.IntStream;
 
+import org.jooq.lambda.Seq;
+
 public final class SingleResponsibiltyPrinciple {
 
 	public long countPrimes(final int upTo) {
@@ -25,6 +27,10 @@ public final class SingleResponsibiltyPrinciple {
 
 	private boolean isprime(final int num) {
 		return IntStream.rangeClosed(2, num).allMatch(element -> (num % element) != 0);
+	}
+
+	private boolean isPrime2(final int number) {
+		return Seq.range(2, number).allMatch(element -> (number % element) != 0);
 	}
 
 }
