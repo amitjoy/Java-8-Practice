@@ -25,7 +25,9 @@ public final class Application {
 			final Function<Candidate, Candidate>... evaluators) {
 		// return Stream.of(evaluators).reduce((func1, func2) ->
 		// func1.andThen(func2)).orElse(candidate -> candidate);
-		return Stream.of(evaluators).reduce(Function::andThen).orElse(Function.identity());
+		// return
+		// Stream.of(evaluators).reduce(Function::andThen).orElse(Function.identity());
+		return Stream.of(evaluators).reduce(Function.identity(), Function::andThen);
 	}
 
 	private static void evaluateCandidate(final Candidate candidate, final Function<Candidate, Candidate> evaluator) {
