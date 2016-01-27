@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.amitinside.java8.practice;
+package com.amitinside.java8.jool;
 
 import static org.jooq.lambda.Agg.allBy;
 import static org.jooq.lambda.Agg.anyBy;
