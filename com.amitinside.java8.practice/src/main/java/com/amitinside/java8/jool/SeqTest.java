@@ -21,6 +21,8 @@ import static junit.framework.Assert.assertNotNull;
 
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -33,6 +35,13 @@ public final class SeqTest {
 	@Test
 	public void testAverageMethod() {
 		assertEquals(Optional.of(2), Seq.of(1, 2, 3).avg());
+	}
+
+	public void testGroupBy() {
+		final Map<Integer, List<Integer>> map1 = Seq.of(1, 2, 3, 4).groupBy(i -> i % 2);
+		assertEquals(newArrayList(2, 4), map1.get(0));
+		assertEquals(newArrayList(1, 3), map1.get(1));
+		assertEquals(2, map1.size());
 	}
 
 	@Test

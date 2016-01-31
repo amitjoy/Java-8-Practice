@@ -15,14 +15,14 @@
  *******************************************************************************/
 package com.amitinside.java8.jool;
 
-import static org.jooq.lambda.Agg.allBy;
-import static org.jooq.lambda.Agg.anyBy;
+import static org.jooq.lambda.Agg.allMatch;
+import static org.jooq.lambda.Agg.anyMatch;
 import static org.jooq.lambda.Agg.max;
 import static org.jooq.lambda.Agg.maxBy;
 import static org.jooq.lambda.Agg.median;
 import static org.jooq.lambda.Agg.min;
 import static org.jooq.lambda.Agg.minBy;
-import static org.jooq.lambda.Agg.noneBy;
+import static org.jooq.lambda.Agg.noneMatch;
 import static org.jooq.lambda.Agg.percentile;
 import static org.junit.Assert.assertEquals;
 
@@ -43,9 +43,9 @@ public final class SeqJoolPractice {
 		assertEquals(Optional.of(3), Seq.of(1, 2, 3).collect(minBy(i -> -i)));
 		assertEquals(Optional.of(1), Seq.of(1, 2, 3).collect(maxBy(i -> -i)));
 		assertEquals(true, Seq.of(0, 3).allMatch(i -> (i % 3) == 0));
-		assertEquals(false, Seq.of(1, 2, 3, 4).collect(noneBy(i -> (i % 3) == 0)));
+		assertEquals(false, Seq.of(1, 2, 3, 4).collect(noneMatch(i -> (i % 3) == 0)));
 		assertEquals(false, Seq.of(1, 2, 3, 4).noneMatch(i -> (i % 3) == 0));
-		assertEquals(true, Seq.of(1, 2, 3, 4, 5).collect(anyBy(i -> (i % 3) == 0)));
+		assertEquals(true, Seq.of(1, 2, 3, 4, 5).collect(anyMatch(i -> (i % 3) == 0)));
 
 		assertEquals(Optional.of(1), Stream.of(1, 2).collect(median()));
 		assertEquals(Optional.of(2), Stream.of(1, 2, 3).collect(median()));
@@ -114,7 +114,7 @@ public final class SeqJoolPractice {
 		assertEquals(Optional.of(10), Stream.of(1, 2, 3, 4, 10, 9, 3, 3).collect(percentile(1.0)));
 		assertEquals(Optional.of(20), Stream.of(1, 2, 3, 4, 10, 9, 3, 3, 20).collect(percentile(1.0)));
 
-		System.out.println(Stream.of(1, 2, 3, 4).collect(allBy(num -> (num % 2) == 0)));
+		System.out.println(Stream.of(1, 2, 3, 4).collect(allMatch(num -> (num % 2) == 0)));
 		System.out.println(alphabet);
 		System.out.println(strings);
 	}
