@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.zip.GZIPOutputStream;
 
-public class GzipCompressionStrategy implements CompressionStrategy {
+public final class GzipCompressionStrategy implements CompressionStrategy {
 
 	@Override
 	public OutputStream compress(final OutputStream data) throws IOException {
