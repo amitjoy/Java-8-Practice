@@ -15,6 +15,8 @@
  *******************************************************************************/
 package com.amitinside.java8.design.pattern.decorator;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.base.MoreObjects;
 
 public final class Candidate {
@@ -22,7 +24,7 @@ public final class Candidate {
 	private final String name;
 
 	public Candidate(final String name) {
-		super();
+		checkNotNull(name);
 		this.name = name;
 	}
 
