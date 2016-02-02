@@ -1,14 +1,14 @@
-package com.amitinside.java8.copy.constructor;
+package com.amitinside.java8.clone;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.google.common.base.MoreObjects;
 
-public final class Student {
+public final class Student implements Cloneable {
 
-	private final String name;
+	private String name;
 
-	private final Result result;
+	private Result result;
 
 	public Student(final String name, final Result result) {
 		checkNotNull(name);
@@ -18,14 +18,12 @@ public final class Student {
 		this.result = result;
 	}
 
-	public Student(final Student student) {
-		this.name = student.getName();
-		final Result _result = student.getResult();
-		if (_result instanceof ExcellentResult) {
-			this.result = new ExcellentResult((ExcellentResult) _result);
-		} else {
-			this.result = new Result(_result);
-		}
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		final Student student = (Student) super.clone();
+		student.name = this.name;
+		student.result = (Result) this.result.clone();
+		return student;
 	}
 
 	public String getName() {

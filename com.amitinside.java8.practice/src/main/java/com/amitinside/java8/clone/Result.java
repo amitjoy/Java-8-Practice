@@ -1,17 +1,20 @@
-package com.amitinside.java8.copy.constructor;
+package com.amitinside.java8.clone;
 
 import com.google.common.base.MoreObjects;
 
-public class Result {
+public class Result implements Cloneable {
 
-	private final int marks;
+	private int marks;
 
 	public Result(final int marks) {
 		this.marks = marks;
 	}
 
-	public Result(final Result result) {
-		this.marks = result.getMarks();
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		final Result result = (Result) super.clone();
+		result.marks = this.marks;
+		return result;
 	}
 
 	public int getMarks() {
