@@ -1,5 +1,7 @@
 package com.amitinside.java8.copy.constructor;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.google.common.base.MoreObjects;
 
 public final class Student {
@@ -9,7 +11,9 @@ public final class Student {
 	private final Result result;
 
 	public Student(final String name, final Result result) {
-		super();
+		checkNotNull(name);
+		checkNotNull(result);
+
 		this.name = name;
 		this.result = result;
 	}

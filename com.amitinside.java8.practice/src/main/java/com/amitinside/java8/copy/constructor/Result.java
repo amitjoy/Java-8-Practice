@@ -7,7 +7,6 @@ public final class Result {
 	private final int marks;
 
 	public Result(final int marks) {
-		super();
 		this.marks = marks;
 	}
 
