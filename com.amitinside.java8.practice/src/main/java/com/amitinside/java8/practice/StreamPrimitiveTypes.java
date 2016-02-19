@@ -15,6 +15,7 @@
  *******************************************************************************/
 package com.amitinside.java8.practice;
 
+import java.util.DoubleSummaryStatistics;
 import java.util.IntSummaryStatistics;
 
 import com.amitinside.java8.practice.model.Album;
@@ -28,6 +29,13 @@ public final class StreamPrimitiveTypes {
 		System.out.println("Min: " + trackLengthStats.getMin());
 		System.out.println("Avg: " + trackLengthStats.getAverage());
 		System.out.println("Total Length: " + trackLengthStats.getSum());
+
+		final DoubleSummaryStatistics doubleSummaryStatistics = album.getTracks()
+				.mapToDouble(track -> track.getLength()).summaryStatistics();
+		System.out.println("Max: " + doubleSummaryStatistics.getMax());
+		System.out.println("Min: " + doubleSummaryStatistics.getMin());
+		System.out.println("Avg: " + doubleSummaryStatistics.getAverage());
+		System.out.println("Total Length: " + doubleSummaryStatistics.getSum());
 	}
 
 }

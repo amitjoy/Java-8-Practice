@@ -15,8 +15,11 @@
  *******************************************************************************/
 package com.amitinside.java8.practice;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.ToLongFunction;
+import java.util.stream.Collectors;
 
 import com.amitinside.java8.practice.model.Album;
 import com.amitinside.java8.practice.model.Track;
@@ -83,6 +86,8 @@ public final class BoilerPlateCodeRefactoring {
 	}
 
 	public long countTracks_2() {
+		final Function<Album, Long> keyExtractor = album -> album.getAllMusicians().count();
+		this.albums.stream().collect(Collectors.maxBy(Comparator.comparing(keyExtractor)));
 		return this.albums.stream().flatMap(album -> album.getTracks()).count();
 	}
 

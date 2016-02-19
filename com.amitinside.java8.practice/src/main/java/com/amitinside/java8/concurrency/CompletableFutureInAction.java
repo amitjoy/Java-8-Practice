@@ -17,11 +17,9 @@ package com.amitinside.java8.concurrency;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -53,14 +51,15 @@ public final class CompletableFutureInAction {
 	}
 
 	public static void main(final String[] args) {
-		final List<String> topSites = Lists.newArrayList("www.google.com", "www.youtube.com", "www.yahoo.com",
-				"www.msn.com");
+		Lists.newArrayList("www.google.com", "www.youtube.com", "www.yahoo.com", "www.msn.com");
 
-		final List<CompletableFuture<Double>> relevanceFutures = topSites.stream()
-				.map(site -> CompletableFuture.supplyAsync(() -> downloadSite(site), executor))
-				.map(contentFuture -> contentFuture.thenApply(this::parse))
-				.map(docFuture -> docFuture.thenCompose(this::calculateRelevance))
-				.collect(Collectors.<CompletableFuture<Double>> toList());
+		// final List<CompletableFuture<Double>> relevanceFutures =
+		// topSites.stream()
+		// .map(site -> CompletableFuture.supplyAsync(() -> downloadSite(site),
+		// executor))
+		// .map(contentFuture -> contentFuture.thenApply(this::parse))
+		// .map(docFuture -> docFuture.thenCompose(this::calculateRelevance))
+		// .collect(Collectors.<CompletableFuture<Double>> toList());
 	}
 
 	private static Document parse(final String xml) {

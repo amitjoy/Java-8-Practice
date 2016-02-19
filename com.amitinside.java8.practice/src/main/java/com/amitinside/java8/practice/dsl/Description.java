@@ -29,7 +29,6 @@ public final class Description {
 			final Expect expect = new Expect();
 			specification.specifyBehaviour(expect);
 		} catch (final Exception e) {
-			// TODO: handle exception
 		}
 	}
 
