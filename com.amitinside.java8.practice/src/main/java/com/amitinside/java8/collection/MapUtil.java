@@ -8,7 +8,7 @@ import com.google.common.collect.Maps;
 public final class MapUtil {
 
 	public static <K, V> Map.Entry<K, V> entry(final K key, final V value) {
-		return new AbstractMap.SimpleEntry<K, V>(key, value);
+		return new AbstractMap.SimpleEntry<>(key, value);
 	}
 
 	public static void main(final String[] args) {
